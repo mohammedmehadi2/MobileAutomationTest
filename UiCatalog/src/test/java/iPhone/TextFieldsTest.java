@@ -1,23 +1,39 @@
 package iPhone;
 
+import base.MobileAPI;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pagefactory.NavigateUi;
 import pagefactory.TextFieldsPage.TextFields;
-import pagefactory.UiCatalogPage.UiCatalog;
 
-/**
- * Created by mrahman on 1/15/17.
- */
-public class TextFieldsTest extends NavigateUi {
+public class TextFieldsTest extends MobileAPI {
 
-    TextFields textFields = new TextFields();
+    TextFields textFields;
 
+    @BeforeMethod
+    public void initializing(){
+        textFields = PageFactory.initElements(ad, TextFields.class);
+        textFields.goToTextFildsTab();
+    }
     @Test
-    public void navigate()throws InterruptedException{
-        UiCatalog ui = PageFactory.initElements(ad, UiCatalog.class);
-        ui.getTextFields();
-        textFields.writeTextToFields();
-
+    public void textFieldPageValidation(){
+        Assert.assertEquals(textFields.goToTextFields(),true);
+    }
+    @Test
+    public void firstTextFieldsTest(){
+        Assert.assertEquals(textFields.firstTextFields(),true);
+    }
+    @Test
+    public void secondTextFieldsTest(){
+        Assert.assertEquals(textFields.secondTextFields(),true);
+    }
+    @Test
+    public void thirdTextFieldsTest(){
+        Assert.assertEquals(textFields.thirdTextFields(),true);
+    }
+    @Test
+    public void fourthTextFieldsTest(){
+        Assert.assertEquals(textFields.fourthTextFields(),true);
     }
 }
